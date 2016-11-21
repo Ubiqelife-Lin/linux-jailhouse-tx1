@@ -19,3 +19,4 @@ always := built-in.o
 obj-y := $(COMMON_OBJECTS)
 obj-y += entry.o setup.o control.o mmio.o caches.o
 obj-y += exception.o traps.o
+obj-$(CONFIG_SERIAL_TEGRA) += ../arm-common/uart-tegra.o

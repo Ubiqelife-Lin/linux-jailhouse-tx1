@@ -16,5 +16,6 @@ OBJS-y += dbg-write.o lib.o psci.o control.o paging.o mmu_cell.o
 OBJS-y += irqchip.o gic-common.o
 OBJS-$(CONFIG_ARM_GIC_V2) += gic-v2.o
 OBJS-$(CONFIG_SERIAL_AMBA_PL011) += uart-pl011.o
+OBJS-$(CONFIG_SERIAL_TEGRA) += uart-tegra.o
 
 COMMON_OBJECTS = $(addprefix ../arm-common/,$(OBJS-y))
