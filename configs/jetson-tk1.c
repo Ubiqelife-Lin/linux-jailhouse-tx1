@@ -33,8 +33,8 @@ struct {
 			.size = 0x4000000 - 0x100000, /* -1MB (PSCI) */
 		},
 		.debug_console = {
-			.phys_start = 0x70006000,
-			.size = 0x1000,
+			.phys_start = 0x70006300,
+			.size = 0x40,
 			.flags = JAILHOUSE_MEM_IO,
 		},
 		.platform_info.arm = {
