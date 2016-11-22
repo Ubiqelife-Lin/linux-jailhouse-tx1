@@ -17,7 +17,7 @@ ccflags-y := -I$(src)/../hypervisor/arch/$(SRCARCH)/include \
 	     -I$(src)/../hypervisor/include
 
 jailhouse-y := cell.o main.o sysfs.o
-jailhouse-$(CONFIG_PCI) += pci.o
+#jailhouse-$(CONFIG_PCI) += pci.o
 jailhouse-$(CONFIG_OF) += vpci_template.dtb.o
 
 $(obj)/main.o: $(obj)/../hypervisor/include/generated/version.h
