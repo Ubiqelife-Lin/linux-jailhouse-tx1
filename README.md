@@ -134,6 +134,8 @@ ARM architecture:
 
     - LeMaker HiKey
 
+    - NVIDIA Jetson TX1
+
 On x86, hardware capabilities can be validated by running
 
     jailhouse hardware check sysconfig.cell
