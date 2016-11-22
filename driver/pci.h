@@ -18,7 +18,7 @@ enum {
 	JAILHOUSE_PCI_ACTION_CLAIM, JAILHOUSE_PCI_ACTION_RELEASE,
 };
 
-#ifdef CONFIG_PCI
+#if 0
 
 void jailhouse_pci_do_all_devices(struct cell *cell, unsigned int type,
 				  unsigned int action);
