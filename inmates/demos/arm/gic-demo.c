@@ -16,6 +16,7 @@
 #include <inmate.h>
 
 #define BEATS_PER_SEC		10
+#define SHARED_MEM_ADDR		((u64*) 0xf9000000)
 
 static u64 ticks_per_beat;
 static volatile u64 expected_ticks;
@@ -23,7 +24,7 @@ static bool blinking_led;
 
 static void handle_IRQ(unsigned int irqn)
 {
-	static u64 min_delta = ~0ULL, max_delta = 0;
+	static u64 min_delta = ~0ULL, max_delta = 0, shared = 0;
 	u64 delta;
 
 	if (irqn != TIMER_IRQ)
@@ -35,10 +36,15 @@ static void handle_IRQ(unsigned int irqn)
 	if (delta > max_delta)
 		max_delta = delta;
 
+#if 0
 	printk("Timer fired, jitter: %6ld ns, min: %6ld ns, max: %6ld ns\n",
 	       (long)timer_ticks_to_ns(delta),
 	       (long)timer_ticks_to_ns(min_delta),
 	       (long)timer_ticks_to_ns(max_delta));
+#endif
+
+	*SHARED_MEM_ADDR = (shared++);
+	printk ("Value: %llu\n", *SHARED_MEM_ADDR);
 
 	if (blinking_led) {
 #ifdef CONFIG_MACH_SUN7I
