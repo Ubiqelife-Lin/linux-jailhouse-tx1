@@ -23,7 +23,7 @@ The hypervisor requires a contiguous piece of RAM for itself and each
 additional cell. This currently has to be pre-allocated during boot-up.
 On ARM platforms this is usually achieved by reducing the amount of memory seen
 by the Linux kernel. You therefore need to modify the kernel boot arguments
-adding ```mem=1920M vmalloc=512M``` (on TX1 this can be written inside the
+adding ```mem=3968M vmalloc=512M``` (on TX1 this can be written inside the
 ```/boot/extlinux/extlinux.conf``` file).
 
 Since Jailhouse writes its output directly to the serial port, you also need to

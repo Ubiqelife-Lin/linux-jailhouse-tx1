@@ -10,7 +10,7 @@
  * This work is licensed under the terms of the GNU GPL, version 2.  See
  * the COPYING file in the top-level directory.
  *
- * NOTE: Add "mem=1920M vmalloc=512M" to the kernel command line.
+ * NOTE: Add "mem=3968M vmalloc=512M" to the kernel command line.
  */
 
 #include <jailhouse/types.h>
@@ -21,21 +21,21 @@
 struct {
 	struct jailhouse_system header;
 	__u64 cpus[1];
-	struct jailhouse_memory mem_regions[45];
+	struct jailhouse_memory mem_regions[42];
 	struct jailhouse_irqchip irqchips[2];
 } __attribute__((packed)) config = {
 	.header = {
 		.signature = JAILHOUSE_SYSTEM_SIGNATURE,
 		.revision = JAILHOUSE_CONFIG_REVISION,
 		.hypervisor_memory = {
-			.phys_start = 0xfc000000,
+			.phys_start = 0x17c000000,
 			.size = 0x4000000,
 		},
 		.debug_console = {
 			.address = 0x70006000,
 			.size = 0x0040,
 			.flags = JAILHOUSE_CON_TYPE_8250 |
-				 JAILHOUSE_CON_FLAG_MMIO,
+				 JAILHOUSE_CON_FLAG_MMIO ,
 		},
 		.platform_info.arm = {
 			.gicd_base = 0x50041000,
@@ -349,33 +349,10 @@ struct {
 		/* System RAM */ {
 			.phys_start = 0x80000000,
 			.virt_start = 0x80000000,
-			.size = 0x78000000,
+			.size = 0xfc000000,
 			.flags = JAILHOUSE_MEM_READ | JAILHOUSE_MEM_WRITE |
 				JAILHOUSE_MEM_EXECUTE,
 		},
-		/* Shared memory */ {
-			.phys_start = 0xf9000000,
-			.virt_start = 0xf9000000,
-			.size = 0x00010000,
-			.flags = JAILHOUSE_MEM_READ | JAILHOUSE_MEM_WRITE |
-				JAILHOUSE_MEM_EXECUTE | JAILHOUSE_MEM_ROOTSHARED,
-		},
-		/* apic-demo */ {
-			.phys_start = 0xfbef0000,
-			.virt_start = 0xfbef0000,
-			.size = 0x00010000,
-			.flags = JAILHOUSE_MEM_READ | JAILHOUSE_MEM_WRITE |
-				JAILHOUSE_MEM_EXECUTE,
-		},
-#if 1
-		/* Persistent_ram */ {
-			.phys_start = 0xfc000000,
-			.virt_start = 0xfc000000,
-			.size = 0x4000000,
-			.flags = JAILHOUSE_MEM_READ | JAILHOUSE_MEM_WRITE |
-				JAILHOUSE_MEM_IO | JAILHOUSE_MEM_EXECUTE,
-		},
-#endif
 	},
 	.irqchips = {
 		/* GIC */ {
